@@ -31,6 +31,7 @@ import daemon
 
 READ_BUFFER_SIZE = 4096
 
+
 def is_class_d(addr):
     """
     >>> is_class_d("239.0.0.254")
@@ -45,7 +46,6 @@ def is_class_d(addr):
         socket.inet_pton(socket.AF_INET, addr)
         net = int(addr[:3])  # Dirty
     except (ValueError, socket.error) as e:
-        #print str(e)
         return False
 
     if net < 224 or net > 239:
@@ -182,18 +182,20 @@ if __name__ == "__main__":
                         help="Be verbose.")
     parser.add_argument("--fork", action="store_true", default=False,
                         help="Daemonize process.")
-    parser.add_argument("--pidfile", default="/var/tmp/mcast2http.pid", help=
-                        "File to write process identifier to when daemonized.")
+    parser.add_argument("--pidfile", default="/var/tmp/mcast2http.pid",
+                        help="File to write process identifier to when daemonized.")
     parser.add_argument("--mcastip", type=str,
                         help="""Source IPv4 address to join multicast groups from.
                         NOTE! If unset, a short TCP connection to google.com
                         will determine the local address.""")
     parser.add_argument("--timeout", default=2000, type=int,
-                        help="Time out requests after this long. [ms]")
+                        help="""Time out requests after this long.
+                             (Default: 2000 [milliseconds])""")
     parser.add_argument("--debug", action="store_true",
                         help="Enable debugging output.")
     parser.add_argument("listen", type=str,
-                        help="""HTTP server listen address. (Examples: "0.0.0.0", "::")""")
+                        help="""HTTP server listen address.
+                        (Examples: "0.0.0.0", "::")""")
     parser.add_argument("port", type=int,
                         help="HTTP server listen port.  (Example: 8080)")
 
