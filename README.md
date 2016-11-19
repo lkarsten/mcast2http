@@ -27,6 +27,14 @@ Back of envelope performance evaluation indicate that this will serve
 100-500Mbit/s on recent hardware. I don't believe it to handle multiple
 cores especially well, but it is good enough for me right now.
 
+## Known issues
+
+* There is no authorization or authentication.
+* Content-Type is always application/octet-stream, should be configurable.
+* The finishing log statements are never run, since SocketServer throws a
+socket.error with pipe closed when the client hangs up.
+
+
 ## Installation
 
 For now a simple Makefile will install (and overwrite!) the juicy
