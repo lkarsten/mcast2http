@@ -1,0 +1,21 @@
+EXTM3U;
+#EXTINF:-1 tvg-id="tvg.channel.com",Channel 1
+#EXTVLCOPT:network-caching=300
+#EXTALBUMARTURL:http://example.com/icons/channel.png
+http://example.com:8080/239.0.0.1
+
+#EXTINF:-2 tvg-id="tvg.channel2.com",Channel 2
+#EXTVLCOPT:network-caching=300
+#EXTALBUMARTURL:http://example.com/icons/channel2.png
+http://example.com:8080/239.0.0.2/1234
+
+# If you have access to the mbone multicast network, these
+# may work:
+#EXTINF:-1 ,Deutsche Welle
+#EXTVLCOPT:network-caching=300
+http://example.com:8080/233.0.59.102/4002
+
+#EXTINF:-1 ,NHK World
+#EXTVLCOPT:network-caching=300
+http://example.com:8080/233.0.59.3/2000
+

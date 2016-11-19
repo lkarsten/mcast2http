@@ -16,12 +16,10 @@ Client-side example:
 will send any data received from the group 239.255.0.10 on port 1234 to
 curl (which will print to stdout, ruining your terminal :-)).
 
-Content-Type is application/octet-stream.
+Typical usage is for viewing DVB (MPEG2 TS) streams, possibly from MuMuDVB
+or similar software.
 
-Typical usage is for viewing dvb/mpeg2ts streams. Usually an .m3u
-playlist file fed to VLC/Kodi make more suitable clients.
-
-There is no authorization or authentication.
+A sample .m3u playlist file for VLC, Kodi or similar players is included.
 
 Back of envelope performance evaluation indicate that this will serve
 100-500Mbit/s on recent hardware. I don't believe it to handle multiple
