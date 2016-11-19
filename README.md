@@ -16,8 +16,9 @@ Client-side example:
 will send any data received from the group 239.255.0.10 on port 1234 to
 curl (which will print to stdout, ruining your terminal :-)).
 
-Typical usage is for viewing DVB (MPEG2 TS) streams, possibly from MuMuDVB
-or similar software.
+Typical usage is for viewing DVB (MPEG2 TS) streams multicasted outside
+of your control (MuMuDVB, other head-ends) on a network without multicast
+routing.
 
 A sample .m3u playlist file for VLC, Kodi or similar players is included.
 
