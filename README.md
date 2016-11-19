@@ -1,21 +1,21 @@
-# Multicast to HTTP relay server.
+# Multicast to HTTP relay server
 
-Reads from a HTTP specificed multicast group:port and relay the received
-data out over the HTTP socket.
+Relay an IPv4 multicast group out on a HTTP connection. Multicast group
+and port are specificed in the HTTP URL.
 
-Run with:
+Running it:
 
-   $ ./mcast2http.py 0.0.0.0 8080
+    $ /usr/local/bin/mcast2http 0.0.0.0 8080
 
-Supply your eth0/em0 address to --ip for multicast joins to work. Start
-with "--help" to list other non-mandatory arguments.
+Start with "--help" (or no args) to list other accepted arguments.
 
 Client-side example:
 
-    $ curl http://example.com:8080/239.255.0.10/1234
+    $ curl http://localhost:8080/239.255.0.10/1234
 
 will send any data received from the group 239.255.0.10 on port 1234 to
 curl (which will print to stdout, ruining your terminal :-)).
+
 Content-Type is application/octet-stream.
 
 Typical usage is for viewing dvb/mpeg2ts streams. Usually an .m3u
@@ -27,6 +27,19 @@ Back of envelope performance evaluation indicate that this will serve
 100-500Mbit/s on recent hardware. I don't believe it to handle multiple
 cores especially well, but it is good enough for me right now.
 
+## Installation
+
+For now a simple Makefile will install (and overwrite!) the juicy
+parts. Beware!
+
+    $ pip install daemon
+    $ sudo make install
+
+The daemon is usually run under systemd with the service file included. It
+can also run standalone with --fork on non systemd systems.
+
 ## Contact
 
-Author: Lasse Karstensen <lasse.karstensen@gmail.com>, November 2014.
+Issue tracking on the github issue tracker.
+
+Author: Lasse Karstensen <lasse.karstensen@gmailNO_SPAM_PLEASE.com>, November 2014.
