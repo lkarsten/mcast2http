@@ -1,0 +1,19 @@
+[Unit]
+Description=Multicast to HTTP proxy
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=nobody
+Group=nogroup
+
+Restart=always
+
+ExecStart=/usr/local/bin/mcast2http :: 8007
+PrivateDevices=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target
