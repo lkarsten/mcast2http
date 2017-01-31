@@ -70,7 +70,7 @@ class RelayHandler(SimpleHTTPRequestHandler):
     def parse_request_path(self, path):
         p = urlparse(path)
         patharg = p.path.split("/")
-        if len(patharg) == 2:  # Short format, use default group.
+        if len(patharg) == 2:  # Short format, use default port.
             addr = (patharg[1], 1234)
         elif len(patharg) == 3:  # /group/port
             try:
@@ -101,7 +101,7 @@ class RelayHandler(SimpleHTTPRequestHandler):
         self.connection.setsockopt(socket.SOL_TCP, socket.TCP_NODELAY, 1)
         self.connection.setsockopt(socket.IPPROTO_IP, socket.IP_TOS, 0x10)
 
-        info("%s requested %s." % (self.client_address[0], self.path))
+        info("%s requested %s" % (self.client_address[0], self.path))
 
         if self.path in ["/", "/favicon.ico"]:
             return self.synth_error(403, "Forbidden")
@@ -134,8 +134,8 @@ class RelayHandler(SimpleHTTPRequestHandler):
 
                 if initial_read:
                     return self.synth_error(404,
-                        "No data received after %.2f seconds.\n" %
-                        sock.gettimeout())
+                                            "No data received after %.2f seconds\n" %
+                                            sock.gettimeout())
                 break
 
             if initial_read:
@@ -202,7 +202,7 @@ if __name__ == "__main__":
     if len(sys.argv) == 1:
         parser.print_help()
         exit()
-    args = parser.parse_args()
+        args = parser.parse_args()
 
     if args.verbose:
         basicConfig(level=DEBUG)
@@ -210,7 +210,7 @@ if __name__ == "__main__":
         basicConfig(level=INFO)
 
     # I'm not very happy about this, but it seems like the only semi-
-    # portable way to find what public IP adress is going to be used.
+    # portable way to find what public IP address is going to be used.
     if args.mcastip is None:
         debug("Connecting to google.com to find our public address...")
         s = socket.create_connection(("google.com", 80))
@@ -237,4 +237,4 @@ if __name__ == "__main__":
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
-        info("Ctrl-c caught, normal exit.")
+        info("Ctrl-c caught, normal exit")
