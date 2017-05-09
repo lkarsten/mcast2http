@@ -213,8 +213,9 @@ if __name__ == "__main__":
     # portable way to find what public IP address is going to be used.
     if args.mcastip is None:
         debug("Connecting to google.com to find our public address...")
-        s = socket.create_connection(("google.com", 80))
+        s = socket.create_connection(("ipv4.google.com", 80))
         args.mcastip = s.getsockname()[0]
+        assert not args.mcastip.startswith("2001:")  # Worst IPv6 check ever
         s.close()
 
     debug("Will join groups from ip4:%s" % args.mcastip)
