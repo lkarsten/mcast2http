@@ -161,7 +161,7 @@ class RelayHandler(SimpleHTTPRequestHandler):
                                         str(e)))
                 break
 
-        info("%s finished  %s:%s after %i bytes: %s" %
+        info("%s finished %s:%s after %i bytes" %
              (self.client_address[0], addr[0], addr[1], bytecount))
         del sock
 
