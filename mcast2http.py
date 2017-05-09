@@ -202,7 +202,7 @@ if __name__ == "__main__":
     if len(sys.argv) == 1:
         parser.print_help()
         exit()
-        args = parser.parse_args()
+    args = parser.parse_args()
 
     if args.verbose:
         basicConfig(level=DEBUG)
