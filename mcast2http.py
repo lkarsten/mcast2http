@@ -41,16 +41,14 @@ def is_class_d(addr):
     >>> is_class_d("10.0.0.2")
     False
     """
-    assert type(addr) == str
     try:
-        socket.inet_pton(socket.AF_INET, addr)
-        net = int(addr[:3])  # Dirty
+        s = socket.inet_pton(socket.AF_INET, addr)
     except (ValueError, socket.error) as e:
         return False
 
-    if net < 224 or net > 239:
-        return False
-    return True
+    if ord(s[0]) >= 224 and ord(s[0]) <= 239:
+        return True
+    return False
 
 
 class RelayHandler(SimpleHTTPRequestHandler):
