@@ -214,8 +214,8 @@ if __name__ == "__main__":
     if args.mcastip is None:
         debug("Connecting to google.com to find our public address...")
         s = socket.create_connection(("ipv4.google.com", 80))
+        assert s.family == socket.AF_INET
         args.mcastip = s.getsockname()[0]
-        assert not args.mcastip.startswith("2001:")  # Worst IPv6 check ever
         s.close()
 
     debug("Will join groups from ip4:%s" % args.mcastip)
