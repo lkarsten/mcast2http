@@ -175,7 +175,7 @@ class ThreadedHTTPServer(SocketServer.ThreadingMixIn,
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="mcast2http - multicast to HTTP relay.",
-        epilog="Relays multicasted data to HTTP clients.")
+        epilog="Relay multicast data to HTTP clients.")
     parser.add_argument("-v", "--verbose", action="store_true",
                         help="Be verbose.")
     parser.add_argument("--fork", action="store_true", default=False,
