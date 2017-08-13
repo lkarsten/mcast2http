@@ -220,10 +220,7 @@ if __name__ == "__main__":
 
     debug("Will join groups from ip4:%s" % args.mcastip)
 
-    # XXX: Figure out which is right.
-    BaseHTTPServer.allow_reuse_address = True
     SocketServer.TCPServer.allow_reuse_address = True
-
     if ":" in args.listen:  # Dirty
         SocketServer.TCPServer.address_family = socket.AF_INET6
 
